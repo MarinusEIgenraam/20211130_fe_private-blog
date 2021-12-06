@@ -1,7 +1,7 @@
 /** Created by ownwindows on 06-12-21 **/
 ////////////////////
 //// Build
-import { lazy, Suspense, useState } from 'react';
+import {lazy, Suspense, useState} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,8 +18,9 @@ import PrivateRoutes from 'routes/PrivateRoutes.js'
 import PublicRoutes from 'routes/PublicRoutes.js'
 import Loader from 'components/shared/Loader/Loader.js'
 import BlogPost from "./components/layout/BlogPost/BlogPost";
+import Navbar from "components/shared/navigation/Navabar/Navbar";
 
-const Home = lazy(()=> import ('components/layout/Home/Home.js'))
+const Home = lazy(() => import ('components/layout/Home/Home.js'))
 const Login = lazy(() => import ('components/layout/Login/Login.js'));
 const Register = lazy(() => import('components/layout/Register/Register.js'))
 const ForgotPassword = lazy(() => import('components/shared/ForgotPassword/ForgotPassword.js'))
@@ -41,17 +42,8 @@ function App() {
 
     return (
         <Router>
-            <nav>
-                <ul>
-                    <li><NavLink activeClassName="active-link" exact to='/'>Home</NavLink></li>
-
-
-                    {isAuthenticated && <li><NavLink activeClassName="active-link" exact to='/blogs'>Blogs</NavLink></li>}
-                    {!isAuthenticated && <li><NavLink activeClassName="active-link" exact to='/login'>Login</NavLink></li>}
-                    {isAuthenticated && <li><button onClick={handleLogin} href="/">Logout</button></li>}
-                </ul>
-            </nav>
-            <Suspense fallback={<Loader />}>
+            <Navbar isAuthenticated={isAuthenticated} handleLogin={handleLogin}/>
+            <Suspense fallback={<Loader/>}>
                 <Switch>
                     <PublicRoutes
                         exact path="/"
@@ -75,16 +67,16 @@ function App() {
                         path="/forgot-password"
                         isAuthenticated={isAuthenticated}
                     >
-                        <ForgotPassword />
+                        <ForgotPassword/>
                     </PublicRoutes>
                     <PrivateRoutes
                         path="/"
                         isAuthenticated={isAuthenticated}
                     >
-                        <ProtectedRoutes />
+                        <ProtectedRoutes/>
                     </PrivateRoutes>
                     <Route path="*">
-                        <NoComponentFound />
+                        <NoComponentFound/>
                     </Route>
                 </Switch>
             </Suspense>

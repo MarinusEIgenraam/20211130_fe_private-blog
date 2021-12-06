@@ -12,7 +12,13 @@ import './Home.css'
 export default function Home() {
     return(
         <>
-            <p>You are home</p>
+            <header>
+
+            </header>
+            <div className="hero">
+
+                <p className="hero-header">Home is where your home is</p>
+            </div>
         </>
     )
 }
