@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  align-items: end;
+}
+
+label {
+  padding: 5px;
+}
