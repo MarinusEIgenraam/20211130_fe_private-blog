@@ -22,8 +22,6 @@ import Navbar from "components/shared/navigation/Navabar/Navbar";
 
 const Home = lazy(() => import ('components/layout/Home/Home.js'))
 const Login = lazy(() => import ('components/layout/Login/Login.js'));
-const Register = lazy(() => import('components/layout/Register/Register.js'))
-const ForgotPassword = lazy(() => import('components/shared/ForgotPassword/ForgotPassword.js'))
 const NoComponentFound = lazy(() => import('components/shared/NoComponentFound/NoComponentFound.js'))
 
 ////////////////////
@@ -57,18 +55,6 @@ function App() {
                     >
                         <Login handleLogin={handleLogin}/>
                     </PublicRoutes>
-                    <PublicRoutes
-                        path="/register"
-                        isAuthenticated={isAuthenticated}
-                    >
-                        <Register handleLogin={handleLogin}/>
-                    </PublicRoutes>
-                    <PublicRoutes
-                        path="/forgot-password"
-                        isAuthenticated={isAuthenticated}
-                    >
-                        <ForgotPassword/>
-                    </PublicRoutes>
                     <PrivateRoutes
                         path="/"
                         isAuthenticated={isAuthenticated}
@@ -85,50 +71,3 @@ function App() {
 };
 
 export default App;
-
-// function App() {
-//     // We houden in de state bij of iemand is "ingelogd" (simpele versie)
-//     const [isAuthenticated, toggleIsAuthenticated] = useState(false);
-//
-//     const handleLogin = () => {
-//         toggleIsAuthenticated(!isAuthenticated);
-//         console.log(isAuthenticated);
-//         // location.push("/private");
-//     };
-//
-//     return (
-//         <BrowserRouter>
-//             <nav>
-//                 <ul>
-//                     <li><NavLink activeClassName="active-link" exact to='/'>Home</NavLink></li>
-//                     <li><NavLink activeClassName="active-link" exact to='/blogs'>Blogs</NavLink></li>
-//                     <li><NavLink activeClassName="active-link" exact to='/classblogs'>ClassBlogs</NavLink></li>
-//                     <li><NavLink activeClassName="active-link" exact to='/login'>Login</NavLink></li>
-//                     {isAuthenticated && <li><button onClick={handleLogin} href="/">Logout</button></li>}
-//                 </ul>
-//             </nav>
-//
-//             <Switch>
-//                 <Route exact path='/blogs'>
-//                     <Blog/>
-//                 </Route>
-//                 <Route exact path='/classblogs'>
-//                     <ClassBlogs/>
-//                 </Route>
-//                 <Route exact path='/login'>
-//                     <Login handleLogin={handleLogin}/>
-//                 </Route>
-//                 <Route exact path='/blogs/:id'>
-//                     <BlogPost/>
-//                 </Route>
-//                 <Route exact path='/'>
-//                     <Home/>
-//                 </Route>
-//                 {isAuthenticated && <Route exact path="/private"><Private/></Route>}
-//
-//             </Switch>
-//         </BrowserRouter>
-//     );
-// }
-//
-// export default App;

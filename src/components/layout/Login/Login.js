@@ -42,11 +42,11 @@ export default function Login({handleLogin, ...rest}) {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label>
                         Username
-                        <input {...register("username")} type="text"/>
+                        <input placeholder="piet"{...register("username")} type="text"/>
                     </label>
                     <label>
                         Password
-                        <input {...register("password")} type="text"/>
+                        <input placeholder="sinterklaas" {...register("password")} type="text"/>
                     </label>
                     <button type="submit">Login</button>
                 </form>
